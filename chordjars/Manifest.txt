@@ -1,2 +1,2 @@
-Main-Class: no.hvl.dat110.node.client.test.Process5
+Main-Class: no.hvl.dat110.node.peers.Process5
 
