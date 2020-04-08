@@ -42,22 +42,18 @@ public class Util {
 		// it modifies 'upper' and 'id' when lower > upper e.g. set (6, 2) in mod 10 = {6, 7, 8, 9, 0, 1, 2}
 		
 		// implement: read the descriptions above
-		boolean cond = false;
-		BigInteger size = Hash.addressSize();
-		BigInteger upper2 = upper;
-		
-		if(lower.compareTo(upper)==1) {
-			upper2 = upper.add(size);
+		BigInteger dnode = upper;
+		if (lower.compareTo(upper) > 0) {
+			dnode = upper.add(Hash.addressSize());
 			
-			if((id.compareTo(new BigInteger("0")) ==1 || id.compareTo(new BigInteger("0"))==0) && 
-					((id.compareTo(upper)==-1 || id.compareTo(upper)==0))) {
-				id = id.add(size);
+			if (id.compareTo(upper) <= 0) {
+				id = id.add(Hash.addressSize());
 			}
 		}
-		upper = upper2;
-		cond = (id.compareTo(lower)==1 || id.compareTo(lower)==0) && (id.compareTo(upper)==-1 || id.compareTo(upper)==0);
-		
+		upper = dnode;
+		boolean cond = lower.compareTo(id) <= 0 && id.compareTo(upper) <= 0;
 		return cond;
+		
 	}
 	
 	public static List<String> toString(List<NodeInterface> list) throws RemoteException {
